@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.albertshift.flex</groupId>
+	<artifactId>flex-protocol</artifactId>
+	<packaging>jar</packaging>
+	<name>flex-protocol</name>
+	
+	<parent>
+    <groupId>com.albertshift.flex</groupId>
+    <artifactId>parent-pom</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>protoc-plugin</id>
+      <url>http://sergei-ivanov.github.com/maven-protoc-plugin/repo/releases/</url>
+    </pluginRepository>
+  </pluginRepositories>
+  
+  <dependencies>
+  
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+    </dependency>  
+  
+  </dependencies>
+  
+  <build>
+  
+    <resources>
+      <resource>
+        <directory>target/generated-resources</directory>
+        <filtering>false</filtering>
+      </resource>
+    </resources>  
+  
+    <plugins>
+      <plugin>
+          <groupId>com.google.protobuf.tools</groupId>
+          <artifactId>maven-protoc-plugin</artifactId>
+          <version>0.3.2</version>
+          <configuration>
+              <protocExecutable>/usr/local/bin/protoc</protocExecutable>
+          </configuration>
+          <executions>
+              <execution>
+                  <goals>
+                      <goal>compile</goal>
+                      <goal>testCompile</goal>
+                  </goals>
+              </execution>
+          </executions>
+      </plugin>
+    </plugins>
+      
+  </build>
+
+</project>
